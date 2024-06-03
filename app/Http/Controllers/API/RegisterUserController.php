@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 
-// MVC Model <-> Controller <-data-> React(View)
 class RegisterUserController extends Controller
 {
     public function store(Request $request): Response
