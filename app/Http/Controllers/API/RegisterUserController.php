@@ -13,12 +13,12 @@ use Illuminate\Validation\Rules\Password;
 
 class RegisterUserController extends Controller
 {
-    public function store(Request $request): Response
+    public function store(Request $request): Response // TODO: Json Response
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Password::defaults()],
+            'password' => ['required', 'confirmed', Password::min(8)->letters()->mixedCase()->numbers()],
         ]);
 
         $user = User::create([

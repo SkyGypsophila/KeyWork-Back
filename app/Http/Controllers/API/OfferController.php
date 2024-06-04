@@ -6,12 +6,18 @@ use App\Models\Offer;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OfferController
 {
+    const PER_PAGE = 10;
+
     public function index(): JsonResponse
     {
-        $offers = Offer::all();
+        $offers = Offer::query()
+            ->select('id', 'title', 'description', DB::raw('price / 100 as price_per_hour'), 'start_date', 'end_date', 'created_at') // 'price as price_per_hour' not using the casting
+            ->selectRaw( 'TIMESTAMPDIFF(hour, start_date, end_date) as hours')
+            ->cursorPaginate(self::PER_PAGE);
 
         return response()->json([
             'offers' => $offers,

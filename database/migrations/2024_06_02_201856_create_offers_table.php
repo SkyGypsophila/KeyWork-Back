@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->bigInteger('price');
+            $table->bigInteger('price'); // per hour
             $table->timestamp('start_date')->nullable();
             $table->timestamp('end_date')->nullable();
             $table->foreignId('creator_id')->constrained('users');

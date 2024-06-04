@@ -18,11 +18,11 @@ class OfferFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->title(),
+            'title' => fake()->jobTitle(),
             'description' => fake()->text(),
             'price' => random_int(2, 100),
-            'start_date' => now()->addHours(rand(5, 10)),
-            'end_date' => now()->addHours(rand(7, 10)),
+            'start_date' => now()->addHours(rand(5, 7)),
+            'end_date' => now()->addHours(rand(8, 11)),
         ];
     }
 }
