@@ -8,9 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\RegisterUserController;
 
-
-
-
 Route::middleware('auth:sanctum')->group(function() {
     Route::post('/logout', [AuthenticateSessionController::class, 'destroy'])->name('api.auth.destroy');
 
@@ -28,5 +25,3 @@ Route::post('/register', [RegisterUserController::class, 'store']);
 Route::post('/login', [AuthenticateSessionController::class, 'store'])->name('api.auth.store');
 
 Route::get('/offers', [OfferController::class, 'index'])->name('api.offers.index');
-
-Route::get('/skills', [SkillController::class, 'index'])->name('api.skills.index');

@@ -35,17 +35,15 @@ class AuthenticateSessionController
         ]);
     }
 
-    public function destroy(Request $request): JsonResponse
+    public function destroy(): JsonResponse
     {
-        Auth::guard('web')->logout();
+        $user = Auth::user();
 
-        $authStatus = $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
+        $user->currentAccessToken()->delete();
 
         return response()->json([
             'status' => Response::HTTP_OK,
-            'unauthenticated' => $authStatus,
+            'unauthenticated' => true,
         ]);
     }
 }

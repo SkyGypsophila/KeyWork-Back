@@ -18,6 +18,9 @@ class Education extends Model
         'completed_at',
     ];
 
+    protected $hidden = [
+        'user_id',
+    ];
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
