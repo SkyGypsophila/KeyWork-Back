@@ -20,9 +20,21 @@ class OfferFactory extends Factory
         return [
             'title' => fake()->jobTitle(),
             'description' => fake()->text(),
-            'price' => random_int(2, 100),
-            'start_date' => now()->addHours(rand(5, 7)),
-            'end_date' => now()->addHours(rand(8, 11)),
+            'salary' => random_int(2, 100),
+            'hours' => random_int(1,6),
+            'date' => now()->addHours(rand(5, 7)),
+            'requirements' => $this->generateRequirements(),
         ];
+    }
+
+    protected function generateRequirements()
+    {
+        $requirements = [];
+
+        for ($i = 0; $i < rand(2, 5) ; $i++) {
+            $requirements[] = fake()->text(10);
+        }
+
+        return implode(',', $requirements);
     }
 }

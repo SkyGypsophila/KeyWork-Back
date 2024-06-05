@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->bigInteger('price'); // per hour
-            $table->timestamp('start_date')->nullable();
-            $table->timestamp('end_date')->nullable();
+            $table->bigInteger('salary');
+            $table->integer('hours');
+            $table->timestamp('date')->nullable();
+            $table->string('requirements');
             $table->foreignId('creator_id')->constrained('users');
             $table->timestamps();
         });

@@ -26,19 +26,26 @@ class OfferController
 
     public function store(Request $request): JsonResponse
     {
-        $request->merge(['start_date' => Carbon::parse($request->input('start_date'))->format('Y-m-d H:i:s')]);
-        $request->merge(['end_date' => Carbon::parse($request->input('end_date'))->format('Y-m-d H:i:s')]);
+        $start = Carbon::parse($request->input('start_date'));
+        $end = Carbon::parse($request->input('end_date'));
+
+        $request->merge(['start_date' => $start->format('Y-m-d H:i:s')]);
+        $request->merge(['end_date' => $end->format('Y-m-d H:i:s')]);
 
         $request->validate([
            'title' => ['required', 'string', 'max:255'],
            'description' => ['required', 'string'],
-           'price' => ['required', 'numeric'],
+           'salary' => ['required', 'numeric'],
+           'hours' => ['required', 'numeric'],
            'start_date' => ['required', 'date_format:Y-m-d H:i:s'],
            'end_date' => ['required', 'date_format:Y-m-d H:i:s', 'after:start_date'],
         ]);
 
+        $diffInHours = $end->diffInHours($start);
+        $request->merge(['hours' => $diffInHours]);
+
         $offer = auth()->user()->offers()->create($request->only(
-            'title', 'description', 'price', 'start_date', 'end_date',
+            'title', 'description', 'salary', 'hours', 'start_date', 'end_date',
         ));
 
         return response()->json([
