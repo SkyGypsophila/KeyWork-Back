@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->group(function() {
     })->middleware('auth:sanctum');
 });
 
-Route::post('/register', [RegisterUserController::class, 'store']);
+Route::post('/register', [RegisterUserController::class, 'store'])->name('api.auth.register');
 
 Route::post('/login', [AuthenticateSessionController::class, 'store'])->name('api.auth.store');
 

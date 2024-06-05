@@ -25,18 +25,18 @@ class EducationFactory extends Factory
 
     protected function generateEducation(): string
     {
-        return array_rand(self::educations());
+        return self::educations()[array_rand(self::educations())];
     }
 
     protected static function educations(): array
     {
-        return[
-            "High School",
-            "Associate Degree",
-            "Bachelor's Degree",
-            "Master's Degree",
-            "Doctorate",
-            "Post-Doctorate",
+        return [
+            'High School',
+            'Associate Degree',
+            'Bachelor\'s Degree',
+            'Master\'s Degree',
+            'Doctorate',
+            'Post-Doctorate',
         ];
     }
 }
