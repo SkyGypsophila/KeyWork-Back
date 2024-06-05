@@ -6,6 +6,8 @@ use App\Http\Controllers\API\ProfileController;
 use App\Http\Controllers\API\SkillController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\RegisterUserController;
+
 
 
 
@@ -20,6 +22,8 @@ Route::middleware('auth:sanctum')->group(function() {
         return $request->user();
     })->middleware('auth:sanctum');
 });
+
+Route::post('/register', [RegisterUserController::class, 'store']);
 
 Route::post('/login', [AuthenticateSessionController::class, 'store'])->name('api.auth.store');
 
