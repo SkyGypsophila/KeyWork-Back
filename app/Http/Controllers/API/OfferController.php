@@ -37,8 +37,8 @@ class OfferController
            'description' => ['required', 'string'],
            'salary' => ['required', 'numeric'],
            'hours' => ['required', 'numeric'],
-           'start_date' => ['required', 'date_format:Y-m-d H:i:s'],
-           'end_date' => ['required', 'date_format:Y-m-d H:i:s', 'after:start_date'],
+           'requirements' => ['required', 'string'],
+           'date' => ['required', 'date_format:Y-m-d H:i:s'],
         ]);
 
         $diffInHours = $end->diffInHours($start);

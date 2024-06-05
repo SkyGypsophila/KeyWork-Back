@@ -20,11 +20,6 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
-
         User::factory()
             ->has(
                 Offer::factory()
@@ -40,7 +35,10 @@ class DatabaseSeeder extends Seeder
                     ->count(3)
             )->has(
                 Company::factory()->count(1)
-            )->create();
+            )->create([
+                'name' => 'Test User',
+                'email' => 'test@example.com',
+            ]);
 
         User::factory()
             ->has(
