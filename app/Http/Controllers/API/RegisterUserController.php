@@ -7,8 +7,6 @@ use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 
@@ -18,20 +16,22 @@ class RegisterUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'confirmed', Password::min(8)->letters()->mixedCase()->numbers()],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->string('password')),
+            'password' => Hash::make($request->password),
         ]);
 
-        $token = $user->createToken($request->userAgent() ?: random_int(100, 50000))->plainTextToken;
+        $token = $user->createToken($request->userAgent() ?: 'default_token')->plainTextToken;
 
         return response()->json([
            'token' => $token,
-        ]);
+           'message' => 'Usuario registrado exitosamente'
+        ], 200);
     }
 }
+
