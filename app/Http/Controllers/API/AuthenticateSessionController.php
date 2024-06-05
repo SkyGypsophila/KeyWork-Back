@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\Offer;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
 class AuthenticateSessionController
@@ -14,20 +16,20 @@ class AuthenticateSessionController
     public function store(Request $request): JsonResponse
     {
         $request->validate([
-            'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string'],
+            'email' => 'required|email',
+            'password' => 'required',
         ]);
 
-        if (! Auth::attempt($request->only('email', 'password'))) {
+        $user = User::where('email', $request->email)->first();
+
+        if (! $user || ! Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
-                'email' => 'Those credentials do not match.',
+                'email' => ['The provided credentials do not match our records.'],
             ]);
         }
 
-        $request->session()->regenerate();
-
         return response()->json([
-            'status' => Response::HTTP_OK,
+            'token' => $user->createToken($request->userAgent() ?: random_int(100, 50000))->plainTextToken,
         ]);
     }
 
