@@ -30,7 +30,6 @@ class RegisterUserController extends Controller
 
         return response()->json([
            'token' => $token,
-           'message' => 'Usuario registrado exitosamente'
         ], 200);
     }
 }
