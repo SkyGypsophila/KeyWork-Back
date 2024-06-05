@@ -20,6 +20,7 @@ return new class extends Migration
             $table->timestamp('date')->nullable();
             $table->string('requirements');
             $table->foreignId('creator_id')->constrained('users');
+            //$table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
     }

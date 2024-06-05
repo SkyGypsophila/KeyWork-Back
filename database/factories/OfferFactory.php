@@ -20,14 +20,14 @@ class OfferFactory extends Factory
         return [
             'title' => fake()->jobTitle(),
             'description' => fake()->text(),
-            'salary' => random_int(2, 100),
-            'hours' => random_int(1,6),
-            'date' => now()->addHours(rand(5, 7)),
+            'salary' => rand(2, 100),
+            'hours' => rand(1,6),
+            'date' => now()->addHours(rand(12, 48)),
             'requirements' => $this->generateRequirements(),
         ];
     }
 
-    protected function generateRequirements()
+    protected function generateRequirements(): string
     {
         $requirements = [];
 
