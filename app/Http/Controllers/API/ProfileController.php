@@ -10,7 +10,7 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        $profile = User::with(['skills', 'experiences', 'company'])->where('id', Auth::id())->get();
+        $profile = User::with(['skills', 'experiences', 'education', 'company'])->where('id', Auth::id())->first();
 
         return response()->json([
             'profile' => $profile,

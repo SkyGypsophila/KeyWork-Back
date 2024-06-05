@@ -28,8 +28,10 @@ class AuthenticateSessionController
             ]);
         }
 
+        $token = $user->createToken($request->userAgent() ?: random_int(100, 50000))->plainTextToken;
+
         return response()->json([
-            'token' => $user->createToken($request->userAgent() ?: random_int(100, 50000))->plainTextToken,
+            'token' => $token,
         ]);
     }
 

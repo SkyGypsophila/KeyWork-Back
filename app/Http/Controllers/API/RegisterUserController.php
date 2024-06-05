@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +14,7 @@ use Illuminate\Validation\Rules\Password;
 
 class RegisterUserController extends Controller
 {
-    public function store(Request $request): Response // TODO: Json Response
+    public function store(Request $request): JsonResponse
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -27,8 +28,10 @@ class RegisterUserController extends Controller
             'password' => Hash::make($request->string('password')),
         ]);
 
-        Auth::login($user);
+        $token = $user->createToken($request->userAgent() ?: random_int(100, 50000))->plainTextToken;
 
-        return response()->noContent();
+        return response()->json([
+           'token' => $token,
+        ]);
     }
 }
