@@ -11,9 +11,10 @@ We are in the early stgage of application development. To ensure consistency, ma
 
 #### Install dependencies
 - Run `composer install` to install all required packages.
-
-#### Generate Application Key
-- Run `php artisan key:generate` to generate a  key for encrypting sensitive data.
+    - zip and unzip extension, both missing
+    - Run composer dump-autoload to clean up all compiled files and the paths.
+    - If you have trouble running the composer install, it's likely "The zip extension and unzip command are both missing, skipping", try to locate your xampp/php/php.ini, uncomment the ;extension=zip to extension=zip by removing ';'.
+    - Desactivate the antivirus!.
 
 #### Configure the Environment file
 - Create a new `.env` file by copying the contents of `.env.example`.
@@ -25,6 +26,9 @@ We are in the early stgage of application development. To ensure consistency, ma
     - DB_USERNAME=root
     - DB_PASSWORD=
 - Don't forget to open the Xampp, activating Apache and MySQL, click `Admin` on MySQL option, create a database named keywork(as we specified on DB_DATABASE).
+
+#### Generate Application Key
+- Run `php artisan key:generate` to generate a  key for encrypting sensitive data.
   
 #### Create Database Tables
 - Run `php artisan migrate`.
