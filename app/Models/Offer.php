@@ -19,6 +19,7 @@ class Offer extends Model
         'salary',
         'hours',
         'date',
+        'requirements',
         'creator_id',
     ];
 
