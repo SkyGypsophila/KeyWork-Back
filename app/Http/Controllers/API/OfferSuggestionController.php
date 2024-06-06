@@ -16,11 +16,13 @@ class OfferSuggestionController extends Controller
     public function generate(Request $request, int $id): JsonResponse
     {
         //$result = Http::get(self::GOOGLE_API . 'v1beta/models?key='. env('GEMINI_API_KEY'))->json();
+        $offerTitle = $request->input('title');
+
         $result = Http::post(self::GOOGLE_API . 'v1beta/models/chat-bison-001:generateMessage?key='. env('GEMINI_API_KEY'), [
             'prompt' => [
                 'context' => 'You are great on answer question.',
                 'messages' => [
-                    'content' => 'React.js is(max 50 words)',
+                    'content' => 'Offer profile looking for this position:"' .$offerTitle .'" (max 50 words).',
                 ]
             ]
         ])->json();
