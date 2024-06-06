@@ -16,9 +16,9 @@ class Offer extends Model
     protected $fillable = [
         'title',
         'description',
-        'price',
-        'start_date',
-        'end_date',
+        'salary',
+        'hours',
+        'date',
         'creator_id',
     ];
 
