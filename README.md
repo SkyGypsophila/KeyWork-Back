@@ -13,8 +13,8 @@ We are in the early stgage of application development. To ensure consistency, ma
 - Run `composer install` to install all required packages.
 - If you encounter any errors when installing packages, you might check instructions below
     - Run composer dump-autoload to clean up all compiled files and the paths.
-    - zip and unzip extension, both missing?.
-    - If you have trouble running the composer install, it's likely "The zip extension and unzip command are both missing, skipping", try to locate your xampp/php/php.ini, uncomment the ;extension=zip to extension=zip by removing ';'.
+    - zip and unzip extension, both missing?
+    - You may have trouble running by composer install, it's likely "The zip extension and unzip command are both missing, skipping", try to locate your xampp/php/php.ini, uncomment the ;extension=zip to extension=zip by removing ';'.
     - Desactivate the antivirus!
 
 #### Configure the Environment file
@@ -42,6 +42,5 @@ We are in the early stgage of application development. To ensure consistency, ma
 
 #### Run the Back-End Service
 - Run `php artisan serve`.
+
 You should see the message that indicating `Server running on [http://127.0.0.1:8000]`.
-
-
