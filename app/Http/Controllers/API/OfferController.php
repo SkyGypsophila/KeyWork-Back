@@ -15,6 +15,7 @@ class OfferController
     {
         $offers = Offer::query()
             ->select('id', 'title', 'description', 'date', 'salary', 'hours', 'requirements', 'created_at')
+            ->latest()
             ->cursorPaginate(self::PER_PAGE);
 
         return response()->json([
