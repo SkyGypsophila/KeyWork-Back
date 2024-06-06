@@ -27,5 +27,5 @@ Route::post('/login', [AuthenticateUserController::class, 'store'])->name('api.a
 
 Route::get('/offers', [OfferController::class, 'index'])->name('api.offers.index');
 
-Route::get('/offers/{id}/suggestion', [OfferSuggestionController::class, 'generate'])->name('api.offer.suggestion')
+Route::post('/offers/{id}/suggestion', [OfferSuggestionController::class, 'generate'])->name('api.offer.suggestion')
     ->where('id', '[0-9]+');

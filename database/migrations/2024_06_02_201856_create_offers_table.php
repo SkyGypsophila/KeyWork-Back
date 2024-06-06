@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->bigInteger('salary');
+            $table->integer('salary');
             $table->integer('hours');
             $table->timestamp('date')->nullable();
             $table->string('requirements');
