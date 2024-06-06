@@ -11,9 +11,10 @@ We are in the early stgage of application development. To ensure consistency, ma
 
 #### Install dependencies
 - Run `composer install` to install all required packages.
-    - zip and unzip extension, both missing
+- If you encounter any errors when installing packages, you might check instructions below
     - Run composer dump-autoload to clean up all compiled files and the paths.
-    - If you have trouble running the composer install, it's likely "The zip extension and unzip command are both missing, skipping", try to locate your xampp/php/php.ini, uncomment the ;extension=zip to extension=zip by removing ';'.
+    - zip and unzip extension, both missing?
+    - You may have trouble running by composer install, it's likely "The zip extension and unzip command are both missing, skipping", try to locate your xampp/php/php.ini, uncomment the ;extension=zip to extension=zip by removing ';'.
     - Desactivate the antivirus!
 
 #### Configure the Environment file
@@ -26,6 +27,8 @@ We are in the early stgage of application development. To ensure consistency, ma
     - DB_USERNAME=root
     - DB_PASSWORD=
 - Don't forget to open the Xampp, activating Apache and MySQL, click `Admin` on MySQL option, create a database named keywork(as we specified on DB_DATABASE).
+- To fully experience our web functionality, create a Google Gemini API_KEY on Google. Then, set it in the .env variable.
+      - GEMINI_API_KEY=YOUR_API_KEY
 
 #### Generate Application Key
 - Run `php artisan key:generate` to generate a  key for encrypting sensitive data.
@@ -38,5 +41,6 @@ We are in the early stgage of application development. To ensure consistency, ma
 - Run `php artisan db:seed`.
 
 #### Run the Back-End Service
-- Run `php artisan serve`
+- Run `php artisan serve`.
+
 You should see the message that indicating `Server running on [http://127.0.0.1:8000]`.
