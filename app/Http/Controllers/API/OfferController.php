@@ -25,11 +25,9 @@ class OfferController
 
     public function store(Request $request): JsonResponse
     {
-        $start = Carbon::parse($request->input('start_date'));
-        $end = Carbon::parse($request->input('end_date'));
+        $date = Carbon::parse($request->input('date'));
 
-        $request->merge(['start_date' => $start->format('Y-m-d H:i:s')]);
-        $request->merge(['end_date' => $end->format('Y-m-d H:i:s')]);
+        $request->merge(['date' => $date->format('Y-m-d H:i:s')]);
 
         $request->validate([
            'title' => ['required', 'string', 'max:255'],
@@ -40,11 +38,9 @@ class OfferController
            'date' => ['required', 'date_format:Y-m-d H:i:s'],
         ]);
 
-        $diffInHours = $end->diffInHours($start);
-        $request->merge(['hours' => $diffInHours]);
 
         $offer = auth()->user()->offers()->create($request->only(
-            'title', 'description', 'salary', 'hours', 'start_date', 'end_date',
+            'title', 'description', 'salary', 'hours', 'requirements', 'date'
         ));
 
         return response()->json([
