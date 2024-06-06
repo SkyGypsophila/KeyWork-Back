@@ -15,8 +15,7 @@ class OfferController
     public function index(): JsonResponse
     {
         $offers = Offer::query()
-            ->select('id', 'title', 'description', DB::raw('price / 100 as price_per_hour'), 'start_date', 'end_date', 'created_at') // 'price as price_per_hour' not using the casting
-            ->selectRaw( 'TIMESTAMPDIFF(hour, start_date, end_date) as hours')
+            ->select('id', 'title', 'description', 'date', 'salary', 'hours', 'requirements', 'created_at')
             ->cursorPaginate(self::PER_PAGE);
 
         return response()->json([

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
-class AuthenticateSessionController
+class AuthenticateUserController
 {
     public function store(Request $request): JsonResponse
     {
