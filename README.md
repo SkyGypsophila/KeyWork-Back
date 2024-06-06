@@ -11,8 +11,9 @@ We are in the early stgage of application development. To ensure consistency, ma
 
 #### Install dependencies
 - Run `composer install` to install all required packages.
-    - zip and unzip extension, both missing.
+- If you encounter any errors when installing packages, you might check instructions below
     - Run composer dump-autoload to clean up all compiled files and the paths.
+    - zip and unzip extension, both missing?.
     - If you have trouble running the composer install, it's likely "The zip extension and unzip command are both missing, skipping", try to locate your xampp/php/php.ini, uncomment the ;extension=zip to extension=zip by removing ';'.
     - Desactivate the antivirus!
 
