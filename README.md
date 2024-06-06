@@ -14,7 +14,7 @@ We are in the early stgage of application development. To ensure consistency, ma
     - zip and unzip extension, both missing
     - Run composer dump-autoload to clean up all compiled files and the paths.
     - If you have trouble running the composer install, it's likely "The zip extension and unzip command are both missing, skipping", try to locate your xampp/php/php.ini, uncomment the ;extension=zip to extension=zip by removing ';'.
-    - Desactivate the antivirus!.
+    - Desactivate the antivirus!
 
 #### Configure the Environment file
 - Create a new `.env` file by copying the contents of `.env.example`.
@@ -32,15 +32,11 @@ We are in the early stgage of application development. To ensure consistency, ma
   
 #### Create Database Tables
 - Run `php artisan migrate`.
+- `php artisan migrate:fresh` is a command to drop all tables and recreate them.
   
-### Seed the Database with default/fake data
+#### Seed the Database with default/fake data
 - Run `php artisan db:seed`.
 
-### Run the Back-End Service
+#### Run the Back-End Service
 - Run `php artisan serve`
-- 
 You should see the message that indicating `Server running on [http://127.0.0.1:8000]`.
-
-
-
-
